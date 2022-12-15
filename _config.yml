@@ -10,7 +10,7 @@ baseurl: ''
 # The language of the webpage › http://www.lingoes.net/en/translator/langcode.htm
 # If it has the same name as one of the files in folder `_data/locales`, the layout language will also be changed,
 # otherwise, the layout language will use the default value of 'en'.
-lang: ko
+lang: en
 
 
 # Change to your timezone › http://www.timezoneconverter.com/cgi-bin/findzone/findzone
@@ -42,7 +42,7 @@ social:
   email: keemsir@gmail.com             # change to your email address
   links:
     # The first element serves as the copyright owner's link
-    - https://twitter.com/ #username      # change to your twitter homepage
+    - https://keemsir.github.io      # change to your twitter homepage - https://twitter.com/keemsir
     - https://github.com/keemsir       # change to your github homepage
     # Uncomment below to add more social links
     # - https://www.facebook.com/username
