@@ -21,7 +21,7 @@ timezone: Asia/Seoul
 
 title: keemsir                          # the main title
 
-tagline: nnUNet manual   # it will display as the sub-title
+tagline: develop note   # it will display as the sub-title
 
 description: >-                        # used by seo meta and the atom feed
   A minimal, responsive, and powerful Jekyll theme for presenting professional writing.
@@ -78,10 +78,12 @@ theme_mode: dark   # [light|dark]
 # will be added to all image (site avatar & posts' images) paths starting with '/'
 #
 # e.g. 'https://cdn.com'
-img_cdn: 'https://chirpy-img.netlify.app'
+# img_cdn: 'https://chirpy-img.netlify.app'
+img_cdn: 'https://keemsir.github.io'
 
 # the avatar on sidebar, support local or CORS resources
-avatar: '/commons/avatar.jpg'
+# avatar: '/commons/avatar.jpg'
+avatar: '/assets/img/favicons/android-chrome-512x512.png'
 
 # boolean type, the global switch for ToC in posts.
 toc: true
