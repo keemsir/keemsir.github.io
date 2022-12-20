@@ -10,24 +10,38 @@ pin: true
 
 <!-- categories: [Deep-learning, Machine-learning, nnUNet] -->
 
+![nnuent-flow](/assets/img/commons/nnunet_flow.png)
 
-# 1. Enviroment setting
+
+# Enviroment setting
 ---
 
 > nnU-Net을 학습시키기 위해서 최소 10GB 의 GPU memory가 필요
 
 > nnUNet 라이브러리를 설치하기 전에 pytorch, cuda를 우선적으로 설치하는것을 권장
 
+> nnU-Net은 `Ubuntu / Linux` 환경에서 개발되어 다른 운영체제는 공식적으로 지원하지않는다.
+
 > 가상 환경 생성을 추천
+
+## Create virtual enviroment
 
 ```bash
 conda create -n [eviroment_name] [python=3.8 or python=3.10]
 ```
 
-## nnU-Net official github
-<https://github.com/MIC-DKFZ/nnUNet>
+> eviroment_name: 자유롭게 설정 <br>
+python version: 3.8이나 3.10 권장
+{: .prompt-info }
 
-### 공식 github에서 nnUNet 라이브러리 설치
+
+### nnU-Net official reference
+
+github ref: <https://github.com/MIC-DKFZ/nnUNet> <br>
+paper ref: <https://cardiacmr.hms.harvard.edu/files/cardiacmr/files/isensee_etal_nature2021_nnunet.pdf><br>
+
+
+## Install nnUNet library
 
 
 1. github에서 직접 다운받기
@@ -38,7 +52,7 @@ conda create -n [eviroment_name] [python=3.8 or python=3.10]
     pip install -e .
     ```
 
-`sample content`
+
 
 2. _pip install nnunet_ 으로 설치하기
 
@@ -47,45 +61,181 @@ conda create -n [eviroment_name] [python=3.8 or python=3.10]
     ```
 <br><br><br>
 
-## LiTS 데이터를 기준의 메뉴얼
+## Environment path setting
 <br>
 
 nnU-Net을 사용하기위해서 세가지 환경변수를 설정해야 한다.<br>
 
     1. nnUNet_raw_data_base
-    2. nnUNet_kpreprocessed
+    2. nnUNet_preprocessed
     3. RESULTS_FOLDER
 
+<br>
+    
+    Example tree structure:
+    ```
+    nnUNet_raw_data_base/nnUNet_raw_data/Task507_LiTS
+    ├── dataset.json
+    ├── imagesTr
+    │   ├── train_0_0000.nii.gz
+    │   ├── train_1_0000.nii.gz
+    │   ├── ...
+    ├── imagesTs
+    │   ├── test_101_0000.nii.gz
+    │   ├── test_102_0000.nii.gz
+    │   ├── ...
+    └── labelsTr
+        ├── train_0.nii.gz
+        ├── train_1.nii.gz
+        ├── ...
+    ```
 
-nnU-Net은 `Ubuntu / Linux` 환경에서 개발되어 다른 운영체제는 지원하지않는다.
+
 
 일반적으로 home directory에 있는 `.bashrc` 파일에 경로를 설정한다.
 
-`torch /home/keemsir/.bashrc`
+`torch /home/keemsir/.bashrc`의 파일 가장 하단에 편집기를 이용해서 다음과 같이 편집한다.
 
-
-
-
-# 2. Data preprocessing
----
-
-
--
--
--
-
-
-
-# 3. Data Training
----
 ```bash
-nnUNet_training 2d 
+export nnUNet_raw_data_base="/media/keemsir/nnUNet_raw_data_base"
+export nnUNet_preprocessed="/media/keemsir/nnUNet_preprocessed"
+export RESULTS_FOLDER="/media/keemsir/nnUNet_trained_models"
+```
+
+> nnUNet_preprocessed는 SSD에 위치하여만 한다.
+{: .prompt-warning }
+
+> `.bashrc` 파일 수정없이 터미널에서 실행하여 일시적으로 사용할 수 있다.
+
+다음과 같이 `echo $RESULTS_FOLDER`로 경로 설정이 잘 됐는지 확인할 수 있다.
+
+```bash
+> echo $RESULTS_FOLDER
+media/keemsir/nnunet_trained_models
+```
+
+# Data preprocessing
+---
+
+> LiTS dataset를 사용한 이 튜토리얼에서는 2개의 `label(liver, tumor)`에 대한 `3d_fullres`의 학습 및 추론이며,
+`k-fold(k: 5)` 를 기준으로 학습했다.
+
+경로 환경 설정과 데이터 준비가 끝났으면 nnU-Net 라이브러리를 이용한 전처리를 실행한다.
+
+다운로드 받은 LiTS 경로(`INPUT_DATA_PATH`)로 다음과 같이 터미널에 입력한다.
+
+> INPUT_DATA_PATH 경로내부에 데이터 구조를 다음과 같이 따라줘야한다.
+
+```console
+Task007_LiTS/
+├── dataset.json        <-- 
+├── imagesTr            <-- 
+├── (imagesTs)          <--  
+└── labelsTr            <-- 
 ```
 
 
-# 4. Data prediction
+## Terminal command
+
+```bash
+nnUNet_convert_decathlon_task -i [INPUT_DATA_PATH] -output_task_id [TASK_NUM]
+```
+> TASK_NUM: 임의의 정수인 세자리 숫자로 설정 (중복가능성으로 인해 100 이상 권장)
+
+ex)
+```bash
+nnUNet_convert_decathlon_task -i media/keemsir/input/Task07_LiTS/ -output_task_id 507
+```
+> 
+
+
+```bash
+nnUNet_plan_and_preprocess -t [TASK_NUM]
+```
+
+```bash
+
+```
+
+> TASK_NUM: 임의의 정수인 세자리 숫자 (100 이상 권장)
+
+
+
+
+
+# Data Training
+---
+학습 가능한 네트워크는 [2d, 3d_fullres, 3d_lowres, 3d_cascade_fullres] 로 구성되어있고, fold(default: 5-fold) 별 학습이 가능하다.
+
+
+## Terminal command
+
+```bash
+nnUNet_training 2d nnUNetTrainerV2 [TASK_NUM] [FOLD] --npz
+nnUNet_training 3d_fullres nnUNetTrainerV2 [TASK_NUM] [FOLD] --npz
+nnUNet_training 3d_lowres nnUNetTrainerV2 [TASK_NUM] [FOLD] --npz
+nnUNet_training 3d_cascade_fullres nnUNetTrainerV2CascadeFullRes [TASK_NUM] [FOLD] --npz
+```
+
+```bash
+nnUNet_training 3d_fullres nnUNetTrainerV2 529 0 --npz
+nnUNet_training 3d_fullres nnUNetTrainerV2 529 1 --npz
+nnUNet_training 3d_fullres nnUNetTrainerV2 529 2 --npz
+nnUNet_training 3d_fullres nnUNetTrainerV2 529 3 --npz
+nnUNet_training 3d_fullres nnUNetTrainerV2 529 4 --npz
+```
+
+
+# Data prediction
+---
+전체 fold 학습이 끝나면 다음과 같이 cross validation 을 추출할 수 있다.
+
+## Terminal command
+
+```bash
+nnUNet_determine_postprocessing -tr nnUNetTrainerV2 -t TASK_NUM -m 2d
+nnUNet_determine_postprocessing -tr nnUNetTrainerV2 -t TASK_NUM -m 3d_fullres
+nnUNet_determine_postprocessing -tr nnUNetTrainerV2 -t TASK_NUM -m 3d_lowres
+nnUNet_determine_postprocessing -tr nnUNetTrainerV2CascadeFullRes -t TASK_NUM -m 3d_cascade_fullres
+```
+
+```bash
+nnUNet_predict -i [INPUT_FOLDER] -o [OUTPUT_FOLDER] -t [TASK_NUM] -m 2
+```
+
+
+# Ensemble
 ---
 
-# 5. Ensemble
----
+위에선 3d_fullres에 대해서만 학습했지만, 2개 이상의 네트워크를 이용해서 학습을 한다면 `ensemble method`의 적용이 가능하다.
+
+가능한 학습 네트워크는 `[2d, 3d_fullres, 3d_lowres, 3d_cascade_fullres]`가 있다.
+
+<br>
+<br>
+<br>
+
+ex) 두가지의 모델로 학습을 하고 각각 추론한 경로가 (OUTPUT_FOLDER1, OUTPUT_FOLDER2) 일때,
+
+## Terminal command
+
+```bash
+nnUNet_ensemble -f [OUTPUT_FOLDER1] [OUTPUT_FOLDER2] -o [ENSEMBLE_FOLDER]
+```
+앙상블 결과는 ENSEMBLE_FOLDER에 저장
+
++ `ps.` 모든 훈련`[2d, 3d_fullres, 3d_lowres, 3d_cascade_fullres]`이 완료된다면 가장 최적의 앙상블 조합을 찾을 수 있다.
+
+foreground dice average로 각 앙상블 방법에 따른 `dice score`를 볼 수 있다.
+
+```bash
+nnUNet_find_best_configuration -t 529
+```
+
+
+
+nnunet용 snipet code의 라이브러리
+
+<https://github.com/keemsir/nnUNet_utilities>
+
 
