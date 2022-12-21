@@ -154,7 +154,7 @@ Task007_LiTS/
 
 
 
-## Terminal command
+## Terminal command(convert decathlon task)
 
 ```bash
 nnUNet_convert_decathlon_task -i INPUT_DATA_PATH -output_task_id TASK_NUM
@@ -167,6 +167,7 @@ nnUNet_convert_decathlon_task -i media/keemsir/input/Task07_LiTS/ -output_task_i
 ```
 > 
 
+## Terminal command(plan and preprocess)
 
 ```bash
 nnUNet_plan_and_preprocess -t TASK_NUM
@@ -185,7 +186,7 @@ nnUNet_plan_and_preprocess -t 507
 학습 가능한 네트워크는 [2d, 3d_fullres, 3d_lowres, 3d_cascade_fullres] 로 구성되어있고, fold(default: 5-fold) 별 학습이 가능하다. 여기서 예제로 3d_fullres에 대한 예시이다.
 
 
-## Terminal command
+## Terminal command(traning)
 
 ```bash
 nnUNet_training 2d nnUNetTrainerV2 TASK_NUM FOLD --npz
@@ -208,7 +209,7 @@ nnUNet_training 3d_fullres nnUNetTrainerV2 507 4 --npz
 ---
 해당 네트워크에 대한 전체 fold 학습이 끝나면 다음과 같이 cross validation 을 추출할 수 있다.
 
-## Terminal command
+## Terminal command(determine postprocessing)
 
 ```bash
 nnUNet_determine_postprocessing -tr nnUNetTrainerV2 -t TASK_NUM -m 2d
@@ -222,15 +223,22 @@ ex)
 nnUNet_determine_postprocessing -tr nnUNetTrainerV2 -t 507 -m 3d_fullres
 ```
 
+<br>
+
+<br>
+
+## Terminal command(predict)
 
 ```bash
-nnUNet_predict -i [INPUT_FOLDER] -o [OUTPUT_FOLDER] -t [TASK_NUM] -m 3d_fullres
+nnUNet_predict -i INPUT_FOLDER -o OUTPUT_FOLDER -t TASK_NUM -m 3d_fullres
 ```
+> INPUT_FOLDER의 파일 형식은 []:이 단계에서 
 
 ex)
 ```bash
 nnUNet_predict -i media/keemsir/dnnUNet_raw_data_base/nnUNet_raw_data/Task507_LiTS/imagesTs/ -o OUTPUT_FOLDER/ -t 507 -m 3d_fullres
 ```
+> 
 
 
 
@@ -247,7 +255,7 @@ nnUNet_predict -i media/keemsir/dnnUNet_raw_data_base/nnUNet_raw_data/Task507_Li
 
 ex) 두가지의 모델로 학습을 하고 각각 추론한 경로가 (OUTPUT_FOLDER1, OUTPUT_FOLDER2) 일때,
 
-## Terminal command
+## Terminal command(ensemble)
 
 ```bash
 nnUNet_ensemble -f OUTPUT_FOLDER1 OUTPUT_FOLDER2 -o ENSEMBLE_FOLDER
