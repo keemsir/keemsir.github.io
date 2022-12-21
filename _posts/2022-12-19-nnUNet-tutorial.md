@@ -66,14 +66,19 @@ paper ref: <https://cardiacmr.hms.harvard.edu/files/cardiacmr/files/isensee_etal
 
 nnU-Net을 사용하기위해서 세가지 환경변수를 설정해야 한다.<br>
 
-    1. nnUNet_raw_data_base
-    2. nnUNet_preprocessed
-    3. RESULTS_FOLDER
+```console
+nnUNet_raw_data_base        <-- 
+nnUNet_preprocessed         <-- 
+RESULTS_FOLDER              <-- 
+```
 
-<br>
-    
-    Example tree structure:
+
+1. nnUNet_raw_data_base
+    - raw data의 구조는 밑의 Example tree structure에 따라야한다.<br>
+
     ```
+    Example tree structure:
+    
     nnUNet_raw_data_base/nnUNet_raw_data/Task507_LiTS
     ├── dataset.json
     ├── imagesTr
@@ -91,18 +96,30 @@ nnU-Net을 사용하기위해서 세가지 환경변수를 설정해야 한다.<
     ```
 
 
+2. nnUNet_preprocessed
+    - 전처리가 완료된 데이터가 저장되는 곳이다. 이 폴더에서 데이터를 읽어서 학습데이터로 쓰인다. 따라서 엑세스의 대기시간이 짧고 처리량이 높은 드라이브에 위치하는것이 좋다.(ssd 권장)
+3. RESULTS_FOLDER
+    - 학습된 모델의 weight를 저장하는 경로
+
+
 
 일반적으로 home directory에 있는 `.bashrc` 파일에 경로를 설정한다.
 
 `torch /home/keemsir/.bashrc`의 파일 가장 하단에 편집기를 이용해서 다음과 같이 편집한다.
 
+ex)
 ```bash
 export nnUNet_raw_data_base="/media/keemsir/nnUNet_raw_data_base"
 export nnUNet_preprocessed="/media/keemsir/nnUNet_preprocessed"
 export RESULTS_FOLDER="/media/keemsir/nnUNet_trained_models"
 ```
 
-> nnUNet_preprocessed는 SSD에 위치하여만 한다.
+
+<br>
+
+
+
+> nnUNet_preprocessed는 SSD에 위치하는것을 권장
 {: .prompt-warning }
 
 > `.bashrc` 파일 수정없이 터미널에서 실행하여 일시적으로 사용할 수 있다.
@@ -117,7 +134,7 @@ media/keemsir/nnunet_trained_models
 # Data preprocessing
 ---
 
-> LiTS dataset를 사용한 이 튜토리얼에서는 2개의 `label(liver, tumor)`에 대한 `3d_fullres`의 학습 및 추론이며,
+> `LiTS dataset`를 사용한 이 튜토리얼에서는 2개의 `label(liver, tumor)`에 대한 `3d_fullres`의 학습 및 추론이며,
 `k-fold(k: 5)` 를 기준으로 학습했다.
 
 경로 환경 설정과 데이터 준비가 끝났으면 nnU-Net 라이브러리를 이용한 전처리를 실행한다.
@@ -125,22 +142,24 @@ media/keemsir/nnunet_trained_models
 다운로드 받은 LiTS 경로(`INPUT_DATA_PATH`)로 다음과 같이 터미널에 입력한다.
 
 > INPUT_DATA_PATH 경로내부에 데이터 구조를 다음과 같이 따라줘야한다.
+{: .prompt-tip }
 
 ```console
 Task007_LiTS/
-├── dataset.json        <-- 
-├── imagesTr            <-- 
-├── (imagesTs)          <--  
-└── labelsTr            <-- 
+├── dataset.json        <-- contains metadata of the dataset.
+├── imagesTr            <-- contains the images belonging to the training cases.
+├── (imagesTs)          <-- (optional) contains the images that belong to the test cases.
+└── labelsTr            <-- contains the images with the ground truth segmentation maps for the tarining cases.
 ```
+
 
 
 ## Terminal command
 
 ```bash
-nnUNet_convert_decathlon_task -i [INPUT_DATA_PATH] -output_task_id [TASK_NUM]
+nnUNet_convert_decathlon_task -i INPUT_DATA_PATH -output_task_id TASK_NUM
 ```
-> TASK_NUM: 임의의 정수인 세자리 숫자로 설정 (중복가능성으로 인해 100 이상 권장)
+> TASK_NUM: 임의의 정수인 세자리 숫자로 설정 (중복가능성으로 인해 500 이상 권장)
 
 ex)
 ```bash
@@ -150,45 +169,44 @@ nnUNet_convert_decathlon_task -i media/keemsir/input/Task07_LiTS/ -output_task_i
 
 
 ```bash
-nnUNet_plan_and_preprocess -t [TASK_NUM]
+nnUNet_plan_and_preprocess -t TASK_NUM
 ```
 
+ex)
 ```bash
-
+nnUNet_plan_and_preprocess -t 507
 ```
-
-> TASK_NUM: 임의의 정수인 세자리 숫자 (100 이상 권장)
-
-
+> 위에서 설정한 `output_task_id`인 `507`가 `TASK_NUM`
 
 
 
 # Data Training
 ---
-학습 가능한 네트워크는 [2d, 3d_fullres, 3d_lowres, 3d_cascade_fullres] 로 구성되어있고, fold(default: 5-fold) 별 학습이 가능하다.
+학습 가능한 네트워크는 [2d, 3d_fullres, 3d_lowres, 3d_cascade_fullres] 로 구성되어있고, fold(default: 5-fold) 별 학습이 가능하다. 여기서 예제로 3d_fullres에 대한 예시이다.
 
 
 ## Terminal command
 
 ```bash
-nnUNet_training 2d nnUNetTrainerV2 [TASK_NUM] [FOLD] --npz
-nnUNet_training 3d_fullres nnUNetTrainerV2 [TASK_NUM] [FOLD] --npz
-nnUNet_training 3d_lowres nnUNetTrainerV2 [TASK_NUM] [FOLD] --npz
-nnUNet_training 3d_cascade_fullres nnUNetTrainerV2CascadeFullRes [TASK_NUM] [FOLD] --npz
+nnUNet_training 2d nnUNetTrainerV2 TASK_NUM FOLD --npz
+nnUNet_training 3d_fullres nnUNetTrainerV2 TASK_NUM FOLD --npz
+nnUNet_training 3d_lowres nnUNetTrainerV2 TASK_NUM FOLD --npz
+nnUNet_training 3d_cascade_fullres nnUNetTrainerV2CascadeFullRes TASK_NUM FOLD --npz
 ```
 
+ex)
 ```bash
-nnUNet_training 3d_fullres nnUNetTrainerV2 529 0 --npz
-nnUNet_training 3d_fullres nnUNetTrainerV2 529 1 --npz
-nnUNet_training 3d_fullres nnUNetTrainerV2 529 2 --npz
-nnUNet_training 3d_fullres nnUNetTrainerV2 529 3 --npz
-nnUNet_training 3d_fullres nnUNetTrainerV2 529 4 --npz
+nnUNet_training 3d_fullres nnUNetTrainerV2 507 0 --npz
+nnUNet_training 3d_fullres nnUNetTrainerV2 507 1 --npz
+nnUNet_training 3d_fullres nnUNetTrainerV2 507 2 --npz
+nnUNet_training 3d_fullres nnUNetTrainerV2 507 3 --npz
+nnUNet_training 3d_fullres nnUNetTrainerV2 507 4 --npz
 ```
 
 
 # Data prediction
 ---
-전체 fold 학습이 끝나면 다음과 같이 cross validation 을 추출할 수 있다.
+해당 네트워크에 대한 전체 fold 학습이 끝나면 다음과 같이 cross validation 을 추출할 수 있다.
 
 ## Terminal command
 
@@ -199,9 +217,21 @@ nnUNet_determine_postprocessing -tr nnUNetTrainerV2 -t TASK_NUM -m 3d_lowres
 nnUNet_determine_postprocessing -tr nnUNetTrainerV2CascadeFullRes -t TASK_NUM -m 3d_cascade_fullres
 ```
 
+ex)
 ```bash
-nnUNet_predict -i [INPUT_FOLDER] -o [OUTPUT_FOLDER] -t [TASK_NUM] -m 2
+nnUNet_determine_postprocessing -tr nnUNetTrainerV2 -t 507 -m 3d_fullres
 ```
+
+
+```bash
+nnUNet_predict -i [INPUT_FOLDER] -o [OUTPUT_FOLDER] -t [TASK_NUM] -m 3d_fullres
+```
+
+ex)
+```bash
+nnUNet_predict -i media/keemsir/dnnUNet_raw_data_base/nnUNet_raw_data/Task507_LiTS/imagesTs/ -o OUTPUT_FOLDER/ -t 507 -m 3d_fullres
+```
+
 
 
 # Ensemble
@@ -212,7 +242,7 @@ nnUNet_predict -i [INPUT_FOLDER] -o [OUTPUT_FOLDER] -t [TASK_NUM] -m 2
 가능한 학습 네트워크는 `[2d, 3d_fullres, 3d_lowres, 3d_cascade_fullres]`가 있다.
 
 <br>
-<br>
+
 <br>
 
 ex) 두가지의 모델로 학습을 하고 각각 추론한 경로가 (OUTPUT_FOLDER1, OUTPUT_FOLDER2) 일때,
@@ -220,7 +250,7 @@ ex) 두가지의 모델로 학습을 하고 각각 추론한 경로가 (OUTPUT_F
 ## Terminal command
 
 ```bash
-nnUNet_ensemble -f [OUTPUT_FOLDER1] [OUTPUT_FOLDER2] -o [ENSEMBLE_FOLDER]
+nnUNet_ensemble -f OUTPUT_FOLDER1 OUTPUT_FOLDER2 -o ENSEMBLE_FOLDER
 ```
 앙상블 결과는 ENSEMBLE_FOLDER에 저장
 
@@ -237,5 +267,4 @@ nnUNet_find_best_configuration -t 529
 nnunet용 snipet code의 라이브러리
 
 <https://github.com/keemsir/nnUNet_utilities>
-
 
