@@ -8,7 +8,8 @@ tags: [nnUNet, deep-learning, machine-learning, medical, image, segmentation]
 pin: true
 ---
 
-<!-- categories: [Deep-learning, Machine-learning, nnUNet] -->
+
+
 
 ![nnuent-flow](/assets/img/commons/nnunet_flow.png)
 
@@ -33,15 +34,15 @@ conda create -n [eviroment_name] [python=3.8 or python=3.10]
 > eviroment_name: 자유롭게 설정 <br>
 python version: 3.8이나 3.10 권장
 {: .prompt-info }
-
+ 
 
 ### nnU-Net official reference
 
-github ref: <https://github.com/MIC-DKFZ/nnUNet> <br>
-paper ref: <https://cardiacmr.hms.harvard.edu/files/cardiacmr/files/isensee_etal_nature2021_nnunet.pdf><br>
+github.ref: <https://github.com/MIC-DKFZ/nnUNet> <br>
+paper.ref: <https://cardiacmr.hms.harvard.edu/files/cardiacmr/files/isensee_etal_nature2021_nnunet.pdf><br>
 
 
-## Install nnUNet library
+## Install nnU-Net library
 
 
 1. github에서 직접 다운받기
@@ -66,11 +67,6 @@ paper ref: <https://cardiacmr.hms.harvard.edu/files/cardiacmr/files/isensee_etal
 
 nnU-Net을 사용하기위해서 세가지 환경변수를 설정해야 한다.<br>
 
-```console
-nnUNet_raw_data_base        <-- 
-nnUNet_preprocessed         <-- 
-RESULTS_FOLDER              <-- 
-```
 
 
 1. nnUNet_raw_data_base
@@ -270,7 +266,9 @@ foreground dice average로 각 앙상블 방법에 따른 `dice score`를 볼 �
 nnUNet_find_best_configuration -t 529
 ```
 
+<br>
 
+---
 
 nnunet용 snipet code의 라이브러리
 
