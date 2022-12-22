@@ -207,15 +207,19 @@ nnUNet_training 3d_fullres nnUNetTrainerV2 507 3 --npz
 nnUNet_training 3d_fullres nnUNetTrainerV2 507 4 --npz
 ```
 
-### k-fold(5)에 대한 그래프
+### k-fold(k=5)에 대한 learning curve
 
-<!-- <center class="half"> -->
-<img src="/assets/img/commons/sample/0.png">
-<img src="/assets/img/commons/sample/1.png">
-<img src="/assets/img/commons/sample/2.png">
-<img src="/assets/img/commons/sample/3.png">
-<img src="/assets/img/commons/sample/4.png">
+- blue line: train loss function
+- red line: validation loss function
+- green line: evaluation metric
 
+<center class="half">
+<img src="/assets/img/commons/sample/0.png" width="350">
+<img src="/assets/img/commons/sample/1.png" width="350">
+<img src="/assets/img/commons/sample/2.png" width="350">
+<img src="/assets/img/commons/sample/3.png" width="350">
+<img src="/assets/img/commons/sample/4.png" width="350">
+</center>
 
 <br>
 
