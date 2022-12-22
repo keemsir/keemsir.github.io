@@ -181,6 +181,13 @@ nnUNet_plan_and_preprocess -t 507
 ---
 학습 가능한 네트워크는 [2d, 3d_fullres, 3d_lowres, 3d_cascade_fullres] 로 구성되어있고, fold(default: 5-fold) 별 학습이 가능하다. 여기서 예제로 3d_fullres에 대한 예시이다.
 
+## Other parmeter setting
+
+nnUNet package 설치 경로에서 다양한 parameter들을 변경 할 수 있다.
+
+> `~/nnunet/training/network_training/nnUNetTrainerV2.py` 에서 `epoch`, `learning rate`, `optimizer` 등을 수정 할 수 있다.
+
+<br>
 
 ## Terminal command(traning)
 
@@ -200,6 +207,17 @@ nnUNet_training 3d_fullres nnUNetTrainerV2 507 3 --npz
 nnUNet_training 3d_fullres nnUNetTrainerV2 507 4 --npz
 ```
 
+### k-fold(5)에 대한 그래프
+
+<!-- <center class="half"> -->
+<img src="/assets/img/commons/sample/0.png">
+<img src="/assets/img/commons/sample/1.png">
+<img src="/assets/img/commons/sample/2.png">
+<img src="/assets/img/commons/sample/3.png">
+<img src="/assets/img/commons/sample/4.png">
+
+
+<br>
 
 # Data prediction
 ---
