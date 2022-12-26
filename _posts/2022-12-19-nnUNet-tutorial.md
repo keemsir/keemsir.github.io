@@ -276,7 +276,7 @@ nnUNet_predict -i media/keemsir/dnnUNet_raw_data_base/nnUNet_raw_data/Task507_Li
 
 <br>
 
-ex) 두가지의 모델로 학습을 하고 각각 추론한 경로가 (OUTPUT_FOLDER1, OUTPUT_FOLDER2, OUTPUT_FOLDER3, ...) 일때,
+ex) 두가지 이상의 모델로 학습을 하고 각각 추론한 경로가 (OUTPUT_FOLDER1, OUTPUT_FOLDER2, OUTPUT_FOLDER3, ...) 일때,
 
 ## Terminal command(ensemble)
 
