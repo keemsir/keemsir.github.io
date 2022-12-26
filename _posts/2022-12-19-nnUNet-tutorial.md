@@ -14,7 +14,7 @@ pin: true
 ![nnuent-flow](/assets/img/commons/nnunet_flow.png)
 
 
-# Enviroment setting
+# Enviroment Setting
 ---
 
 > nnU-Net을 학습시키기 위해서 최소 10GB 의 GPU memory가 필요
@@ -101,7 +101,7 @@ nnU-Net을 사용하기위해서 세가지 환경변수를 설정해야 한다.<
 
 일반적으로 home directory에 있는 `.bashrc` 파일에 경로를 설정한다.
 
-`torch /home/keemsir/.bashrc`의 파일 가장 하단에 편집기를 이용해서 다음과 같이 편집한다.
+`touch /home/keemsir/.bashrc`의 파일 가장 하단에 편집기를 이용해서 다음과 같이 편집한다.
 
 ex)
 ```bash
@@ -127,7 +127,7 @@ export RESULTS_FOLDER="/media/keemsir/nnUNet_trained_models"
 media/keemsir/nnunet_trained_models
 ```
 
-# Data preprocessing
+# Data Preprocessing
 ---
 
 > `LiTS dataset`를 사용한 이 튜토리얼에서는 2개의 `label(liver, tumor)`에 대한 `3d_fullres`의 학습 및 추론이며,
@@ -223,7 +223,7 @@ nnUNet_training 3d_fullres nnUNetTrainerV2 507 4 --npz
 
 <br>
 
-# Data prediction
+# Data Prediction
 ---
 해당 네트워크에 대한 전체 fold 학습이 끝나면 다음과 같이 cross validation 을 추출할 수 있다.
 
@@ -250,7 +250,10 @@ nnUNet_determine_postprocessing -tr nnUNetTrainerV2 -t 507 -m 3d_fullres
 ```bash
 nnUNet_predict -i INPUT_FOLDER -o OUTPUT_FOLDER -t TASK_NUM -m 3d_fullres
 ```
-> INPUT_FOLDER의 파일 형식은 []:이 단계에서 
+
+> INPUT_FOLDER의 파일 형식은 Data Preprocessing - convert 단계에서 생성된 rawdata와 같은 파일 형식
+
+
 
 ex)
 ```bash
