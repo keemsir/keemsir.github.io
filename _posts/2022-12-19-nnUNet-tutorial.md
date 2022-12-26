@@ -103,12 +103,12 @@ nnU-Net을 사용하기위해서 세가지 환경변수를 설정해야 한다.<
 
 `touch /home/keemsir/.bashrc`의 파일 가장 하단에 편집기를 이용해서 다음과 같이 편집한다.
 
-ex)
-```bash
-export nnUNet_raw_data_base="/media/keemsir/nnUNet_raw_data_base"
-export nnUNet_preprocessed="/media/keemsir/nnUNet_preprocessed"
-export RESULTS_FOLDER="/media/keemsir/nnUNet_trained_models"
-```
+- ex)
+    ```bash
+    export nnUNet_raw_data_base="/media/keemsir/nnUNet_raw_data_base"
+    export nnUNet_preprocessed="/media/keemsir/nnUNet_preprocessed"
+    export RESULTS_FOLDER="/media/keemsir/nnUNet_trained_models"
+    ```
 
 편집한 후에는 다음과같이 `source /home/keemsir/.bashrc` .bashrc 를 실행하여 재로드 시켜야 한다.
 
@@ -159,10 +159,10 @@ nnUNet_convert_decathlon_task -i INPUT_DATA_PATH -output_task_id TASK_NUM
 ```
 > TASK_NUM: 임의의 정수인 세자리 숫자로 설정 (중복가능성으로 인해 500 이상 권장)
 
-ex)
-```bash
-nnUNet_convert_decathlon_task -i media/keemsir/input/Task07_LiTS/ -output_task_id 507
-```
+- ex)
+    ```bash
+    nnUNet_convert_decathlon_task -i media/keemsir/input/Task07_LiTS/ -output_task_id 507
+    ```
 > 
 
 ## Terminal command(plan and preprocess)
@@ -171,10 +171,10 @@ nnUNet_convert_decathlon_task -i media/keemsir/input/Task07_LiTS/ -output_task_i
 nnUNet_plan_and_preprocess -t TASK_NUM
 ```
 
-ex)
-```bash
-nnUNet_plan_and_preprocess -t 507
-```
+- ex)
+    ```bash
+    nnUNet_plan_and_preprocess -t 507
+    ```
 > 위에서 설정한 `output_task_id`인 `507`가 `TASK_NUM`
 
 
@@ -200,14 +200,14 @@ nnUNet_training 3d_lowres nnUNetTrainerV2 TASK_NUM FOLD --npz
 nnUNet_training 3d_cascade_fullres nnUNetTrainerV2CascadeFullRes TASK_NUM FOLD --npz
 ```
 
-ex)
-```bash
-nnUNet_training 3d_fullres nnUNetTrainerV2 507 0 --npz
-nnUNet_training 3d_fullres nnUNetTrainerV2 507 1 --npz
-nnUNet_training 3d_fullres nnUNetTrainerV2 507 2 --npz
-nnUNet_training 3d_fullres nnUNetTrainerV2 507 3 --npz
-nnUNet_training 3d_fullres nnUNetTrainerV2 507 4 --npz
-```
+- ex)
+    ```bash
+    nnUNet_training 3d_fullres nnUNetTrainerV2 507 0 --npz
+    nnUNet_training 3d_fullres nnUNetTrainerV2 507 1 --npz
+    nnUNet_training 3d_fullres nnUNetTrainerV2 507 2 --npz
+    nnUNet_training 3d_fullres nnUNetTrainerV2 507 3 --npz
+    nnUNet_training 3d_fullres nnUNetTrainerV2 507 4 --npz
+    ```
 
 ### k-fold(k=5)에 대한 learning curve
 
@@ -238,10 +238,10 @@ nnUNet_determine_postprocessing -tr nnUNetTrainerV2 -t TASK_NUM -m 3d_lowres
 nnUNet_determine_postprocessing -tr nnUNetTrainerV2CascadeFullRes -t TASK_NUM -m 3d_cascade_fullres
 ```
 
-ex)
-```bash
-nnUNet_determine_postprocessing -tr nnUNetTrainerV2 -t 507 -m 3d_fullres
-```
+- ex)
+    ```bash
+    nnUNet_determine_postprocessing -tr nnUNetTrainerV2 -t 507 -m 3d_fullres
+    ```
 
 <br>
 
@@ -257,10 +257,10 @@ nnUNet_predict -i INPUT_FOLDER -o OUTPUT_FOLDER -t TASK_NUM -m 3d_fullres
 
 
 
-ex)
-```bash
-nnUNet_predict -i media/keemsir/dnnUNet_raw_data_base/nnUNet_raw_data/Task507_LiTS/imagesTs/ -o OUTPUT_FOLDER/ -t 507 -m 3d_fullres
-```
+- ex)
+    ```bash
+    nnUNet_predict -i media/keemsir/dnnUNet_raw_data_base/nnUNet_raw_data/Task507_LiTS/imagesTs/ -o OUTPUT_FOLDER/ -t 507 -m 3d_fullres
+    ```
 > 
 
 
@@ -276,7 +276,7 @@ nnUNet_predict -i media/keemsir/dnnUNet_raw_data_base/nnUNet_raw_data/Task507_Li
 
 <br>
 
-ex) 두가지 이상의 모델로 학습을 하고 각각 추론한 경로가 (OUTPUT_FOLDER1, OUTPUT_FOLDER2, OUTPUT_FOLDER3, ...) 일때,
+- ex) 두가지 이상의 모델로 학습을 하고 각각 추론한 경로가 (OUTPUT_FOLDER1, OUTPUT_FOLDER2, OUTPUT_FOLDER3, ...) 일때,
 
 ## Terminal command(ensemble)
 
