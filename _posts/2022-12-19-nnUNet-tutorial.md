@@ -1,5 +1,5 @@
 ---
-layout: post
+# layout: post
 title: "nnU-Net tutorial(for LiTS)"
 author: keemsir
 date: 2022-12-19 11:33:00 +0800
