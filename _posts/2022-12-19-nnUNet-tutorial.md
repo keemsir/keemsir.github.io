@@ -110,8 +110,10 @@ export nnUNet_preprocessed="/media/keemsir/nnUNet_preprocessed"
 export RESULTS_FOLDER="/media/keemsir/nnUNet_trained_models"
 ```
 
+편집한 후에는 다음과같이 `source /home/keemsir/.bashrc` .bashrc 를 실행하여 재로드 시켜야 한다.
 
 <br>
+
 
 
 
