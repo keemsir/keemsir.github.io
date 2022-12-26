@@ -227,7 +227,7 @@ nnUNet_training 3d_fullres nnUNetTrainerV2 507 4 --npz
 
 # Data Prediction
 ---
-해당 네트워크에 대한 전체 fold 학습이 끝나면 다음과 같이 cross validation 을 추출할 수 있다.
+해당 네트워크에 대한 전체 fold 학습이 끝나면 다음과 같이 Cross-Validation metrics 를 추출할 수 있다.
 
 ## Terminal command(determine postprocessing)
 
@@ -276,12 +276,12 @@ nnUNet_predict -i media/keemsir/dnnUNet_raw_data_base/nnUNet_raw_data/Task507_Li
 
 <br>
 
-ex) 두가지의 모델로 학습을 하고 각각 추론한 경로가 (OUTPUT_FOLDER1, OUTPUT_FOLDER2) 일때,
+ex) 두가지의 모델로 학습을 하고 각각 추론한 경로가 (OUTPUT_FOLDER1, OUTPUT_FOLDER2, OUTPUT_FOLDER3, ...) 일때,
 
 ## Terminal command(ensemble)
 
 ```bash
-nnUNet_ensemble -f OUTPUT_FOLDER1 OUTPUT_FOLDER2 -o ENSEMBLE_FOLDER
+nnUNet_ensemble -f OUTPUT_FOLDER1 OUTPUT_FOLDER2 OUTPUT_FOLDER3 ... -o ENSEMBLE_FOLDER
 ```
 앙상블 결과는 ENSEMBLE_FOLDER에 저장
 
