@@ -1,7 +1,7 @@
 ---
 title: "Paper review guide (list up of papers)"
 author: keemsir
-date: 2022-12-19 00:00:00 +0800
+date: 2022-12-25 00:00:00 +0800
 categories: [paper, review]
 tags: [paper, review]
 # pin: true
@@ -62,6 +62,8 @@ tags: [paper, review]
 
 3. ML/DL conference: NIPS/ICML/ICLR
 
+4. Impact factor 높은 journal 에서 최신 논문 보기 (최신 동향 파악)
+
 <br>
 
 > 수식 이해: 가장 기본부터 직접 연산하기
@@ -71,6 +73,7 @@ tags: [paper, review]
 > 매주 2편의 논문 꾸준히 읽기
 
 <br>
+
 
 
 
