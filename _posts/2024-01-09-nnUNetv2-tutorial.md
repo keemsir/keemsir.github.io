@@ -1,5 +1,5 @@
 ---
-title: nnU-Netv2 tutorial(for LiTS)
+title: nnU-Netv2 tutorial(for LiTS)-Writing
 author: keemsir
 date: 2024-01-09 10:00:00 +0800
 categories:
@@ -18,19 +18,33 @@ pin: true
 
 
 
+
 ![nnuent-flow](/assets/img/commons/nnunet_flow.png)
 
+# What is different in v2?
+---
+> 특정 Label의 학습 가능
+> Cuda, CPU 뿐만아니라 mps(Apple M1/M2)에서도 지원
+> `BaseReaderWriter`로 다양한 I/O설정이 가능
+> `nnUNet_raw_cropped` 폴더를 삭제해서 스토리지 용량 확보
+> shell script로 실행가능한 API 추가 `setup.py` 파일 참고
+> Dataset fingerprint 명시적으로 생성 `nnUNet_preprocessed`에 저장 (Next. 임의적인 수정이 영향을 받는지 확인) 
+> plan file에 대한 변경[참고]<https://github.com/MIC-DKFZ/nnUNet/blob/master/documentation/explanation_plans_files.md>
+> 
+> 
 
-# Enviroment Setting
+
+# Enviroment Setting(v1)
 ---
 
-> nnU-Net을 학습시키기 위해서 최소 10GB 의 GPU memory가 필요
-
+> nnU-Net를 학습시키기 위해서 최소 10GB 의 GPU memory가 필요
+> 
 > nnUNet 라이브러리를 설치하기 전에 pytorch, cuda를 우선적으로 설치하는것을 권장
-
+> 
 > nnU-Net은 `Ubuntu / Linux` 환경에서 개발되어 다른 운영체제는 공식적으로 지원하지않는다.
-
+> 
 > 가상 환경 생성을 추천
+
 
 ## Create virtual enviroment
 
@@ -39,8 +53,8 @@ conda create -n [eviroment_name] [python=3.8 or python=3.10]
 ```
 
 > eviroment_name: 자유롭게 설정 <br>
-python version: 3.8이나 3.10 권장
-{: .prompt-info }
+> python version: 3.8이나 3.10 권장
+> {: .prompt-info }
 
 
 ### nnU-Net official reference
@@ -52,7 +66,7 @@ paper.ref: <https://cardiacmr.hms.harvard.edu/files/cardiacmr/files/isensee_etal
 ## Install nnU-Net library
 
 
-1. github에서 직접 다운받기
+1. github에서 직접 다운받기 (웹용 ide를 사용할때)
 
     ```bash
     git clone https://github.com/MIC-DKFZ/nnUNet.git
