@@ -24,14 +24,23 @@ pin: true
 # What is different in v2?
 ---
 > 특정 Label의 학습 가능
+> 
 > Cuda, CPU 뿐만아니라 mps(Apple M1/M2)에서도 지원
+> 
 > `BaseReaderWriter`로 다양한 I/O설정이 가능
+> 
 > `nnUNet_raw_cropped` 폴더를 삭제해서 스토리지 용량 확보
+> 
 > shell script로 실행가능한 API 추가 `setup.py` 파일 참고
+> 
 > Dataset fingerprint 명시적으로 생성 `nnUNet_preprocessed`에 저장 (Next. 임의적인 수정이 영향을 받는지 확인) 
-> plan file에 대한 변경[참고]<https://github.com/MIC-DKFZ/nnUNet/blob/master/documentation/explanation_plans_files.md>
+> 
+> Plan file에 대한 변경 [참고](https://github.com/MIC-DKFZ/nnUNet/blob/master/documentation/explanation_plans_files.md)
 > 
 > 
+> 
+> 
+
 
 
 # Enviroment Setting(v1)
@@ -44,6 +53,7 @@ pin: true
 > nnU-Net은 `Ubuntu / Linux` 환경에서 개발되어 다른 운영체제는 공식적으로 지원하지않는다.
 > 
 > 가상 환경 생성을 추천
+
 
 
 ## Create virtual enviroment
@@ -321,4 +331,10 @@ nnUNet_find_best_configuration -t 529
 nnunet용 snipet code의 라이브러리
 
 <https://github.com/keemsir/nnUNet_utilities>
+
+
+
+
+
+
 
