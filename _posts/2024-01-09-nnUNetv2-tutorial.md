@@ -91,8 +91,9 @@ paper.ref: <https://cardiacmr.hms.harvard.edu/files/cardiacmr/files/isensee_etal
     ```bash
     pip install nnunet
     ```
-<br><br><br>
 
+<br><br>
+<br>
 ## Environment path setting
 <br>
 
@@ -331,10 +332,6 @@ nnUNet_find_best_configuration -t 529
 nnunet용 snipet code의 라이브러리
 
 <https://github.com/keemsir/nnUNet_utilities>
-
-
-
-
 
 
 
