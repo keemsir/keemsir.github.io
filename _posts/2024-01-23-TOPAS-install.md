@@ -3,7 +3,7 @@ title: TOPAS 3.9 installation on Windows 10/11 using the WSL(Windows Subsystem f
 date: 2024-01-23 10:00:00 +0800
 author: keemsir
 categories:
-  - Computer
+  - Medical Physics
 tags:
   - TOPAS
   - WSL
@@ -40,11 +40,15 @@ sudo apt install -y libharfbuzz-dev
 
 
 다운을 받으면 분리되어있는 압축파일로 구성되어있는데 다음 명령을 통해 합친다. 
+
 `cat topas_3_9_debian9.tar.gz.part_* > topas_3_9_debian9.tar.gz`
+
 그리고 압축을 풀어준다.
+
 `tar -xvf topas_3_9_debian9.tar.gz`
 
 TOPAS 설치할 폴더를 만든다.
+
 `mkdir G4Data`
 
 해당 폴더로 이동해서 다운로드 후 압축을 해제한다.
@@ -84,5 +88,6 @@ export PATH=$HOME/USER/topas/bin:$PATH
 ```
 
 그 후 TOPAS 설치 폴더로 이동해서 테스트 해본다.
+
 `source rundemos.csh`
 
