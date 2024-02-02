@@ -52,5 +52,3 @@ iv:Gr/Color/yellow              = 3 225 255 0                      # Integer Vec
 bv:Tf/ScoringOnOff/Values       = 4 "true" "false" "true" "false"  # Boolean Vector
 sv:Ma/MyPlastic/Components      = 3 "Hydrogen" "Carbon" "Oxygen"   # String Vector
 ```
-
-!
