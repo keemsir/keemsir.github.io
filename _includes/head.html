@@ -55,8 +55,6 @@
 
   {% include favicons.html %}
 
-  {% include google-adsense.html %}
-
   <!-- {% include google-analytics.html %} -->
 
   {% if site.resources.ignore_env != jekyll.environment and site.resources.self_hosted %}
@@ -116,5 +114,7 @@
     {% include mode-toggle.html %}
   {% endunless %}
   
+  {% include google-adsense.html %}
+
 </head>
 
