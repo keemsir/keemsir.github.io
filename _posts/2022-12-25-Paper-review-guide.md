@@ -78,6 +78,25 @@ pin: true
 > 매주 1편의 논문 꾸준히 읽기
 
 
+'나의 내일은 오늘 내가 무엇을 읽고 기억하려고 했느냐에 달려 있다'
+
+# 그 외
+요약, 
+핵심을 빨리 파악하는 방법
+
+Introduction
+어떤 논문들 흐름가운데 이 논문이 있고,
+이 논문이 중요한 이유는 뭐고,
+
+Materials and Methods
+_How_ the tested the hypothesis
+
+Results
+What the findings were
+
+Discussion
+How those findings were _interpreted_
+내 의견은 이렇다
 
 
 
