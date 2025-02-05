@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://keemsir.github.io/sitemap.xml
