@@ -248,11 +248,11 @@ nnUNet_training 3d_cascade_fullres nnUNetTrainerV2CascadeFullRes TASK_NUM FOLD -
 - green line: evaluation metric
 
 <center class="half">
-<img src="/assets/img/commons/sample/0.png" width="350">
-<img src="/assets/img/commons/sample/1.png" width="350">
-<img src="/assets/img/commons/sample/2.png" width="350">
-<img src="/assets/img/commons/sample/3.png" width="350">
-<img src="/assets/img/commons/sample/4.png" width="350">
+<img src="/assets/img/commons/sample/0.png" width="350" alt="">
+<img src="/assets/img/commons/sample/1.png" width="350" alt="">
+<img src="/assets/img/commons/sample/2.png" width="350" alt="">
+<img src="/assets/img/commons/sample/3.png" width="350" alt="">
+<img src="/assets/img/commons/sample/4.png" width="350" alt="">
 </center>
 
 <br>
