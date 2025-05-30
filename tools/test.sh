@@ -6,6 +6,8 @@
 #
 # Usage: See help information
 
+bundle exec htmlproofer ./_site --alt-ignore '/.*/'
+
 set -eu
 
 SITE_DIR="_site"
