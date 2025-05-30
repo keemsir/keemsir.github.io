@@ -1,5 +1,5 @@
 ---
-title: 서울 맛집
+title: Seoul
 date: 2025-05-29 10:00:00 +0800
 author:
   - keemsir
