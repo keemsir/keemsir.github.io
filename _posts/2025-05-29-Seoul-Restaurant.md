@@ -1,12 +1,11 @@
 ---
-title: Seoul
+title: Seoul Restaurant
 date: 2025-05-29 10:00:00 +0800
-author:
-  - keemsir
+author: keemsir
 categories:
   - Daily
 tags:
-  - 맛집
+  - Famous place
 pin: false
 ---
 
