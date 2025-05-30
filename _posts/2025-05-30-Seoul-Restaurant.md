@@ -5,7 +5,7 @@ author: keemsir
 categories:
   - Daily
 tags:
-  - Famous place
+  - Famous-place
 pin: true
 ---
 
