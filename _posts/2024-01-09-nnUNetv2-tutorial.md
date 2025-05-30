@@ -247,13 +247,19 @@ nnUNet_training 3d_cascade_fullres nnUNetTrainerV2CascadeFullRes TASK_NUM FOLD -
 - red line: validation loss function
 - green line: evaluation metric
 
-<center class="half">
+![K-fold_0](/assets/img/commons/sample/0.png)
+![K-fold_1](/assets/img/commons/sample/1.png)
+![K-fold_2](/assets/img/commons/sample/2.png)
+![K-fold_3](/assets/img/commons/sample/3.png)
+![K-fold_4](/assets/img/commons/sample/4.png)
+
+<!-- <center class="half">
 <img src="/assets/img/commons/sample/0.png" width="350" alt="">
 <img src="/assets/img/commons/sample/1.png" width="350" alt="">
 <img src="/assets/img/commons/sample/2.png" width="350" alt="">
 <img src="/assets/img/commons/sample/3.png" width="350" alt="">
 <img src="/assets/img/commons/sample/4.png" width="350" alt="">
-</center>
+</center> -->
 
 <br>
 
