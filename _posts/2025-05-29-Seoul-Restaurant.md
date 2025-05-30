@@ -6,7 +6,7 @@ categories:
   - Daily
 tags:
   - Famous place
-pin: false
+pin: true
 ---
 
 
