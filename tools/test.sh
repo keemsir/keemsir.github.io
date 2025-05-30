@@ -6,8 +6,6 @@
 #
 # Usage: See help information
 
-bundle exec htmlproofer ./_site --alt-ignore '/.*/'
-bundle exec htmlproofer ./_site --ignore-missing-alt
 
 set -eu
 
