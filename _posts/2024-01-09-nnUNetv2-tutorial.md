@@ -253,14 +253,6 @@ nnUNet_training 3d_cascade_fullres nnUNetTrainerV2CascadeFullRes TASK_NUM FOLD -
 ![K-fold_3](/assets/img/commons/sample/3.png)
 ![K-fold_4](/assets/img/commons/sample/4.png)
 
-<!-- <center class="half">
-<img src="/assets/img/commons/sample/0.png" width="350" alt="">
-<img src="/assets/img/commons/sample/1.png" width="350" alt="">
-<img src="/assets/img/commons/sample/2.png" width="350" alt="">
-<img src="/assets/img/commons/sample/3.png" width="350" alt="">
-<img src="/assets/img/commons/sample/4.png" width="350" alt="">
-</center> -->
-
 <br>
 
 # Data Prediction
