@@ -17,8 +17,6 @@ pin: true
 
 
 
-
-
 ![nnuent-flow](/assets/img/commons/nnunet_flow.png)
 
 # What is different in v2?
@@ -246,13 +244,13 @@ nnUNet_training 3d_cascade_fullres nnUNetTrainerV2CascadeFullRes TASK_NUM FOLD -
 - blue line: train loss function
 - red line: validation loss function
 - green line: evaluation metric
-<!-- 
+
 ![Kfold_0](/assets/img/commons/sample/0.png)
 ![Kfold_1](/assets/img/commons/sample/1.png)
 ![Kfold_2](/assets/img/commons/sample/2.png)
 ![Kfold_3](/assets/img/commons/sample/3.png)
 ![Kfold_4](/assets/img/commons/sample/4.png)
- -->
+
 <br>
 
 # Data Prediction
