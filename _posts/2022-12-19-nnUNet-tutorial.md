@@ -10,7 +10,6 @@ pin: true
 
 
 
-
 ![nnuent-flow](/assets/img/commons/nnunet_flow.png)
 
 
