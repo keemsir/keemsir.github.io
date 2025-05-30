@@ -33,7 +33,7 @@ conda create -n [eviroment_name] [python=3.8 or python=3.10]
 > eviroment_name: 자유롭게 설정 <br>
 python version: 3.8이나 3.10 권장
 {: .prompt-info }
- 
+
 
 ### nnU-Net official reference
 
