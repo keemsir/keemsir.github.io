@@ -1,13 +1,9 @@
 ---
-title: [Linux] 압축 및 해제
+title: Linux 압축 및 해제
 date: 2025-07-01 10:00:00 +0800
 author: keemsir
-categories:
-  - Linux
-tags:
-  - tar
-  - Linux
-  - zip
+categories: [Linux]
+tags: [Linux, tar, zip]
 pin: false
 ---
 
