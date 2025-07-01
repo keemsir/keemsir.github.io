@@ -133,3 +133,4 @@ unzip aaa.zip -d ./target
 | .tar.gz, .tgz | tar + gzip | 빠르고 범용적 |
 | .tar.bz2      | tar + bzip2 | 압축률 높음, 속도 느림 |
 | .tar.xz       | tar + xz | 압축률 가장 높음 |
+
