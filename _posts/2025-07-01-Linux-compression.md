@@ -5,6 +5,7 @@ author: keemsir
 categories: [Linux]
 tags: [Linux, tar, zip]
 pin: false
+published: true
 ---
 
 
